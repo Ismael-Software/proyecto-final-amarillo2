@@ -1,0 +1,72 @@
+CREATE DATABASE Refaccionaria;
+USE Refaccionaria;
+
+CREATE TABLE Administrador (
+    id_admin INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    usuario VARCHAR(50),
+    contrasena VARCHAR(50)
+);
+
+CREATE TABLE Proveedor (
+    id_proveedor INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    telefono VARCHAR(20),
+    email VARCHAR(100),
+    direccion VARCHAR(150)
+);
+
+CREATE TABLE Refaccion (
+    id_refaccion INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    categoria VARCHAR(50),
+    precio_unitario FLOAT,
+    stock INT,
+    id_proveedor INT,
+    FOREIGN KEY (id_proveedor) REFERENCES Proveedor(id_proveedor)
+);
+
+CREATE TABLE Cliente (
+    id_cliente INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    telefono VARCHAR(20),
+    email VARCHAR(100)
+);
+
+CREATE TABLE Venta (
+    id_venta INT PRIMARY KEY,
+    fecha DATE,
+    total FLOAT,
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+);
+
+CREATE TABLE DetalleVenta (
+    id_detalle INT PRIMARY KEY,
+    cantidad INT,
+    subtotal FLOAT,
+    id_venta INT,
+    id_refaccion INT,
+    FOREIGN KEY (id_venta) REFERENCES Venta(id_venta),
+    FOREIGN KEY (id_refaccion) REFERENCES Refaccion(id_refaccion)
+);
+
+
+
+INSERT INTO Administrador (id_admin, nombre, usuario, contrasena)
+VALUES (1, 'Carlos López', 'clopez', 'admin123');
+
+INSERT INTO Proveedor (id_proveedor, nombre, telefono, email, direccion)
+VALUES (12, 'AutoPartes del Bajío', '442-123-4567', 'contacto@autobajio.com', 'Av. Industrial #234, Querétaro');
+
+INSERT INTO Refaccion (id_refaccion, nombre, categoria, precio_unitario, stock, id_proveedor)
+VALUES (88, 'Filtro de aceite', 'Motor', 180.0, 40, 12);
+
+INSERT INTO Cliente (id_cliente, nombre, telefono, email)
+VALUES (32, 'María Pérez', '442-765-9876', 'maria.perez@email.com');
+
+INSERT INTO Venta (id_venta, fecha, total, id_cliente)
+VALUES (104, '2025-11-04', 360.0, 32);
+
+INSERT INTO DetalleVenta (id_detalle, cantidad, subtotal, id_venta, id_refaccion)
+VALUES (501, 2, 360.0, 104, 88);
