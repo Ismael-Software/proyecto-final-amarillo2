@@ -12,6 +12,9 @@ root.configure(bg="white")
 
 
 
+#comntario de Victor
+
+
 # Crear pestañas
 notebook = ttk.Notebook(root)
 notebook.pack(fill="both", expand=True)
