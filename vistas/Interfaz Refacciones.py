@@ -11,6 +11,7 @@ root.geometry("1000x650")
 root.configure(bg="white")
 
 
+
 # Crear pestañas
 notebook = ttk.Notebook(root)
 notebook.pack(fill="both", expand=True)
