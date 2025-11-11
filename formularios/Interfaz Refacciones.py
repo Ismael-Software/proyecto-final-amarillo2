@@ -11,6 +11,9 @@ root.configure(bg="white")
 
 
 
+
+
+
 # Crear pestañas
 notebook = ttk.Notebook(root)
 
