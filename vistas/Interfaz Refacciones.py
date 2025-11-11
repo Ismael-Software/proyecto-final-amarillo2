@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
 from PIL import Image, ImageTk
+import requests
+from io import BytesIO
 
 
 # Crear ventana
@@ -20,15 +22,27 @@ notebook = ttk.Notebook(root)
 notebook.pack(fill="both", expand=True)
 
 
-# Ruta img
-ruta = r"C:\Users\VICTORPATLAN\Documents\Programas Python\Isma\Refacciones"
+# Cargar Imgs desde Git
+def cargar_imagen(url, tamaño=(200, 200)):
+    try:
+        respuesta = requests.get(url)
+        respuesta.raise_for_status()
+        img = Image.open(BytesIO(respuesta.content)).resize(tamaño)
+        return ImageTk.PhotoImage(img)
+    except Exception as e:
+        print(f"Error al cargar imagen desde {url}: {e}")
+        return None
 
-# Cargar img
-img_admin = ImageTk.PhotoImage(Image.open(rf"{ruta}\Pantalla.png").resize((200, 200)))
-img_prov = ImageTk.PhotoImage(Image.open(rf"{ruta}\Aceite.jpg").resize((200, 200)))
-img_ref = ImageTk.PhotoImage(Image.open(rf"{ruta}\Pantalla.png").resize((200, 200)))
-img_client = ImageTk.PhotoImage(Image.open(rf"{ruta}\Aceite.jpg").resize((200, 200)))
-img_ventas = ImageTk.PhotoImage(Image.open(rf"{ruta}\Pantalla.png").resize((200, 200)))
+url_pantalla = "https://raw.githubusercontent.com/Ismael-Software/proyecto-final-amarillo2/refs/heads/desarrollo/Img/Pantalla.png"
+url_aceite = "https://raw.githubusercontent.com/Ismael-Software/proyecto-final-amarillo2/refs/heads/desarrollo/Img/Aceite.jpg"
+
+img_admin = cargar_imagen(url_pantalla)
+img_prov = cargar_imagen(url_aceite)
+img_ref = cargar_imagen(url_pantalla)
+img_client = cargar_imagen(url_aceite)
+img_ventas = cargar_imagen(url_pantalla)
+
+root.image_refs = [img_admin, img_prov, img_ref, img_client, img_ventas]
 
 root.image_refs = [img_admin, img_prov, img_ref, img_client, img_ventas]  # evitar que se borren
 
@@ -139,7 +153,7 @@ tabla_prov.pack(fill="x", padx=10, pady=10)
 
 
 
-# ========================== REACCIONES uwuwuwuuwuwuwuwuwu=
+# ========================== REACCIONES ===========================
 frame_ref = ttk.Frame(notebook)
 notebook.add(frame_ref, text="Refacciones")
 
