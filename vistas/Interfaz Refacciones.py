@@ -10,7 +10,7 @@ from io import BytesIO
 root = tk.Tk()
 root.title("Sistema de Gestión - Refaccionaria Automotriz")
 root.geometry("1000x650")
-root.configure(bg="white")
+root.configure(bg="#FFD1DC")
 
 
 
