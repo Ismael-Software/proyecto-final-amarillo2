@@ -20,6 +20,7 @@ def mostrar_login():
     contrasena_entry = tk.Entry(login, show="*", font=("Segoe UI", 12))
     contrasena_entry.pack()
 
+
     def validar_login():
         usuario = usuario_entry.get()
         contrasena = contrasena_entry.get()
