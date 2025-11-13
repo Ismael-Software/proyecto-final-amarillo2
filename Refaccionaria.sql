@@ -41,7 +41,7 @@ CREATE TABLE Venta (
     FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
 );
 
-CREATE TABLE DetalleVenta (
+CREATE TABLE DetalleDeVenta (
     id_detalle INT PRIMARY KEY,
     cantidad INT,
     subtotal FLOAT,
@@ -49,4 +49,4 @@ CREATE TABLE DetalleVenta (
     id_refaccion INT,
     FOREIGN KEY (id_venta) REFERENCES Venta(id_venta),
     FOREIGN KEY (id_refaccion) REFERENCES Refaccion(id_refaccion)
-);
+)
