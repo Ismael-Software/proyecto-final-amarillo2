@@ -311,6 +311,7 @@ def abrir_sistema():
             tabla_ventas.insert("","end",values=row)
 
 
+
     def registrar_venta():
         try:
             cantidad = int(cantidad_v.get())
